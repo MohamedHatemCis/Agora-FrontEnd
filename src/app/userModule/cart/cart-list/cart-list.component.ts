@@ -2,11 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationExtras, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HelperFunctions } from 'src/app/helperFunctions';
-import { AuthenticationStorageService } from 'src/app/localStorage/authenticationStorage.service';
-import { Cart } from 'src/app/models/cart';
-import { Order } from 'src/app/models/order';
-import { CartService } from 'src/app/services/cart.service';
-import { OrderService } from 'src/app/services/order.service';
+import { AuthenticationStorageService } from '../../../localStorage/authenticationStorage.service';
+import { Cart } from '../../models/cart';
+import { Order } from '../../models/order';
+import { CartService } from '../../services/cart.service';
+import { OrderService } from '../../services/order.service';
+
 
 @Component({
   selector: 'app-cart-list',

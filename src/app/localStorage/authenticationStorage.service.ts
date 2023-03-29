@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { User } from "../models/User";
+import { User } from "../userModule/models/User";
 
 @Injectable({providedIn:'root'})
 export class AuthenticationStorageService{

@@ -2,12 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LocalStorageService } from 'src/app/localStorage/localStorage.service';
-import { Category } from 'src/app/models/Category';
-import { Product } from 'src/app/models/Product';
-import { Sub_Category } from 'src/app/models/Sub_Category';
-import { CategoryService } from 'src/app/services/category.service';
-import { ProductService } from 'src/app/services/product.service';
-import { Sub_CategoryService } from 'src/app/services/sub_category.service';
+import { Category } from '../../models/Category';
+import { Product } from '../../models/Product';
+import { Sub_Category } from '../../models/Sub_Category';
+import { CategoryService } from '../../services/category.service';
+import { ProductService } from '../../services/product.service';
+import { Sub_CategoryService } from '../../services/sub_category.service';
+
 
 
 @Component({

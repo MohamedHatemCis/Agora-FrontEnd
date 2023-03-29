@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationStorageService } from 'src/app/localStorage/authenticationStorage.service';
-import { Order } from 'src/app/models/order';
-import { OrderService } from 'src/app/services/order.service';
+import { Order } from '../../models/order';
+import { OrderService } from '../../services/order.service';
+
 
 @Component({
   selector: 'app-order-list',

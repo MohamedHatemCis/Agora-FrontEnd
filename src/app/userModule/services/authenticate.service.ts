@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
-import { AuthenticationStorageService } from "../localStorage/authenticationStorage.service";
+import { AuthenticationStorageService } from "../../localStorage/authenticationStorage.service";
 import { User } from "../models/User";
 
 @Injectable({providedIn:'root'})

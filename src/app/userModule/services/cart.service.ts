@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnInit } from "@angular/core";
 import { firstValueFrom, from, Subject } from "rxjs";
-import { AuthenticationStorageService } from "../localStorage/authenticationStorage.service";
+import { AuthenticationStorageService } from "../../localStorage/authenticationStorage.service";
 import { Cart } from "../models/cart";
 import { Cart_Item } from "../models/cart_Item";
 

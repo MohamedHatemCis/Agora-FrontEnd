@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationStorageService } from 'src/app/localStorage/authenticationStorage.service';
-import { Cart_Item } from 'src/app/models/cart_Item';
-import { Product } from 'src/app/models/Product';
-import { CartService } from 'src/app/services/cart.service';
-import { ProductService } from 'src/app/services/product.service';
+import { Cart_Item } from '../../models/cart_Item';
+import { Product } from '../../models/Product';
+import { CartService } from '../../services/cart.service';
+import { ProductService } from '../../services/product.service';
+
 
 
 
