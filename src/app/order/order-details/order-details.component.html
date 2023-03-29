@@ -1,0 +1,15 @@
+<div class="container" style="height: 15%; overflow-x: auto;">
+    <div class="row flex-nowrap">
+      <div class="col-md-3" style="flex: 0 0 auto;" *ngFor="let item of orderItems">
+        <div class="card">
+          <img class="card-img-top item-img" src="{{item.product.img}}" alt="img">
+          <div class="card-body">
+            <p class="card-text">{{item.product.name}}</p>
+            <p class="card-text">Quantity: {{item.prod_quantity}}</p>
+            <p class="card-text">Price/Unit: {{item.product.price}} $</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

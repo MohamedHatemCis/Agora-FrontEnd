@@ -1,0 +1,17 @@
+.container {
+    max-width: 60%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.form-control,.btn {
+    font-size: 1.5em;
+}
+label{
+    font-size: 1.5em;
+}
+.form-check-label{
+    margin-left:30px ;
+}
+h2{
+    font-size: 3em;
+}

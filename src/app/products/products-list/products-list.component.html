@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="row" style="margin-left: 12%;">        
+            <div class="input-group col-md-7" style="margin-right:2.5em;">
+              <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            </div>
+            <button class="btn btn-primary" type="button" (click)="onSearch()">Search</button>
+
+            <select style="margin-left: 2%;" name="categories" id="categories" [(ngModel)]="selectedCategoryIndex" (change)="onCategoryChange($event)">
+                <option *ngFor="let cate of categories" class="submenu-option" value="{{cate.id}}">{{cate.name}}</option>
+            </select>
+
+            <select style="margin-left: 2%;" name="sub_categories" id="sub_categories" [(ngModel)]="selectedSubCategoryIndex" (change)="onSubCategoryChange($event)">
+              <option *ngFor="let sub of sub_categories"  class="submenu-option" value="{{sub.id}}">{{sub.name}}</option>
+          </select>
+    </div>
+  <br>
+  <div class="container" style="margin-bottom: 5%;">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let prod of products" >
+        <a [routerLink]="['/products',prod.id]" routerLinkActive="active">
+        <div class="thumbnail" style="cursor: pointer;" (click)="onSelectProduct(prod)">
+          <img src="{{prod.img}}" alt="Product Image" style="width:300px; height: 225px;">
+          <div class="caption">
+            <h3>{{prod.name}}</h3>
+            <p>Price: {{prod.price}} $</p>
+            <!-- <p><a class="btn btn-primary" role="button" (click)="addToCart()">Add to Cart</a></p> -->
+            <p><a class="btn btn-primary" role="button" style="color: whitesmoke;" >View Details</a></p>
+
+          </div>
+        </div>
+       </a>
+      </div>
+    </div>
+  </div>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
+
