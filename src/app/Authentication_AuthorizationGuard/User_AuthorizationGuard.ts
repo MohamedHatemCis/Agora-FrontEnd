@@ -1,0 +1,39 @@
+import { Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthenticateService } from '../userModule/services/authenticate.service';
+
+/**
+ * User can view this page only if he is a user
+ */
+@Injectable({ providedIn: 'root' })
+export class User_AuthorizationGuard implements CanActivate {
+
+  constructor(
+    private authenticationService: AuthenticateService,
+    private router: Router
+  ) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | boolean
+    | UrlTree
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree> {
+
+    // If he isn't a user > redirect to the error page
+    if (this.authenticationService.checkIfIsAdmin()) {
+      return this.router.parseUrl('/error');
+    }
+    return true;
+  }
+}
+0;

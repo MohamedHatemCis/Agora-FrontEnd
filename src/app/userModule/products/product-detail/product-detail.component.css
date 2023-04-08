@@ -7,3 +7,11 @@ h1{
 .details{
     margin-top: 7%;
 }
+.add-btn{
+    background-color: var(--petrol-color);
+}
+.alert{
+    background-color: #f26e49;
+    color: whitesmoke;
+    font-size: 1.4em;
+}

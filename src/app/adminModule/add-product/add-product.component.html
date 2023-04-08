@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div *ngIf="showAlert" class="alert">
+      {{alertMsg}}
+   </div>
+    <div class="container" style="margin-bottom: 10%;">
+      <div class="text-center">
+        <h1>{{editMode?'Edit Product':'Create Product'}}</h1>
+      </div>
+      <form [formGroup]="productForm" (ngSubmit)="onCreate()">
+        <div class="form-group">
+            <label for="img">Image URL:</label>
+            <input type="text" class="form-control" id="img" name="img" placeholder="Enter image URL" formControlName="img" #img required>
+        </div>
+        <div class="row">
+            <div class="col-md-7">   
+                  <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" formControlName="name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Enter price" formControlName="price" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Enter quantity" formControlName="quantity" required>
+                  </div>
+            </div>
+            <div class="col-md-5">
+                <img class="img-responsive itemImg" [src]="img.value">
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea class="form-control" id="description" name="description" placeholder="Enter description" formControlName="description" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <select name="categories" class="form-control" id="categories" formControlName="cate" (change)="onCategoryChange($event)">
+            <option *ngFor="let cate of categories" class="submenu-option" value="{{cate.id}}">{{cate.name}}</option>
+        </select>
+        </div>
+        <div class="form-group">
+            <label for="subCategory">SubCategory:</label>
+            <select name="sub_categories" class="form-control" id="sub_categories" formControlName="sub" (change)="onSubCategoryChange($event)">
+                <option *ngFor="let sub of sub_categories"  class="submenu-option" [value]="sub.id">{{sub.name}}</option>
+            </select>
+          </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">{{editMode?'Edit Product':'Create Product'}}</button>
+        <button *ngIf="editMode" type="button" class="btn btn-danger" (click)="onDelete()">Delete Product</button>
+
+      </form>
+    </div>
+  </body>
+</html>
+

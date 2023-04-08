@@ -8,7 +8,9 @@
 </head>
 
 <body>
-
+  <div *ngIf="showAlert" class="alert">
+         Item added to the cart
+  </div>
   <div class="container" style="margin-bottom: 10%;">
     <div class="row">
       <div class="col-md-6">
@@ -19,11 +21,16 @@
         <p class="price">{{selectedProduct.price}} $</p>
         <hr>
         <p class="description">{{selectedProduct.description}}</p>
-        <div class="row" style="margin-left: 10%; margin-top: 10%;" >
-          <button class="btn btn-primary col-md-9" style="margin-right: 3%; height: 3em;" (click)="addToCart()" [disabled]="!canBuy">
-            {{canBuy?'Add to Cart':'Item Already in your cart'}}
+        <div class="row" style="margin-left: 10%; margin-top: 10%;" *ngIf="!isAdmin">
+          <button class="btn btn-primary col-md-9 add-btn" style="margin-right: 3%; height: 3em;" (click)="addToCart()" [disabled]="!canBuy||(quantity>selectedProduct.quantity)">
+            {{selectedProduct.quantity==0?'Out of Stock':(quantity>selectedProduct.quantity)?'There are only '+selectedProduct.quantity+' left in the stock':canBuy?'Add to Cart':'Item Already in your cart'}}
           </button>
           <input type="number" name="quan" id="quan" class="form-control col-md-2" style="height: 3em;" value="1" [(ngModel)]="quantity">
+        </div>
+        <div class="row" style="margin-left: 25%; margin-top: 10%;" *ngIf="isAdmin">
+          <button class="btn btn-primary col-md-9 add-btn" style="margin-right: 3%; height: 3em;" [routerLink]="['/admin/edit-product',selectedProduct.id]" routerLinkActive="active">
+           Edit Product
+          </button>
         </div>
       </div>
     </div>

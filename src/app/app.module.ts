@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './userModule/header/header.component';
+import { HeaderComponent } from './header/header.component';
 
-import { FormsModule } from '@angular/forms';
-import { FooterComponent } from './userModule/footer/footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
 import { AboutUsComponent } from './userModule/about-us/about-us.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
@@ -16,6 +16,10 @@ import { ProductDetailComponent } from './userModule/products/product-detail/pro
 import { CartListComponent } from './userModule/cart/cart-list/cart-list.component';
 import { OrderListComponent } from './userModule/order/order-list/order-list.component';
 import { OrderDetailsComponent } from './userModule/order/order-details/order-details.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { AddProductComponent } from './adminModule/add-product/add-product.component';
+import { AddCategoryComponent } from './adminModule/add-category/add-category.component';
+import { ImagesSliderComponent } from './images-slider/images-slider.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +33,15 @@ import { OrderDetailsComponent } from './userModule/order/order-details/order-de
     AboutUsComponent,
     CartListComponent,
     OrderListComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    ErrorPageComponent,
+    AddProductComponent,
+    AddCategoryComponent,
+    ImagesSliderComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

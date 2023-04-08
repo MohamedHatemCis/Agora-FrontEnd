@@ -1,0 +1,26 @@
+/* .carousel-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  } */
+  img{
+    height: 35vw;
+  }
+  .custom-slider-main{
+    display: flex;
+    overflow: hidden;    
+    scroll-behavior: smooth;;
+}
+
+ .info-box{
+    width: 100vw;
+    height:35vw;
+ }
+ .carousel-control-next{
+  margin-top: 25vw;
+  height: 5vw;
+ }
+ .carousel-control-prev{
+  margin-top: 25vw;
+  height: 5vw;
+ }

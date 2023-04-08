@@ -10,6 +10,7 @@ export class Product{
  img:string;
  created_date:Date;
  modified_date:Date;
+ available:Boolean;
  category:Category;
  subCategory:Sub_Category;
 }

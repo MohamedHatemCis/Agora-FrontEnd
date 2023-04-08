@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container" style="margin-bottom: 20%;">
+        <div class="text-center">
+            <h1>Add or Edit Categories</h1>
+          </div>
+           
+     <div class="form-group">
+        <label for="category">Category:</label>
+        <div class="row">
+            <div class="col-md-10" >
+             <select name="categories" class="form-control" id="categories" (change)="onCategoryChange($event)">
+                    <option *ngFor="let cate of categories" class="submenu-option" value="{{cate.id}}">{{cate.name}}</option>
+             </select>
+            </div>
+            <button type="button" class="btn btn-primary add-btn" (click)="showAddCategory()">{{isAddingCategory?'Hide':'Add'}}</button>
+            <button type="button" class="btn btn-danger delete-btn" (click)="onDeleteCategory()">Delete</button>
+        </div>
+       </div>
+
+       <div class="row" style="margin-left: 3%; margin-bottom: 2%;" *ngIf="isAddingCategory">
+        <div class="col-md-10" >
+            <input type="text" class="form-control" id="cate" name="cate" placeholder="Enter the new Category name"  [(ngModel)]="newCategoryName" >
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success" [disabled]="!newCategoryName" (click)="onAddCategory()">Add Category</button>
+        </div>
+      </div>
+
+       <div class="form-group">
+        <label for="subCategory">SubCategory:</label>
+        <div class="row">
+          <div class="col-md-11">
+            <select name="sub_categories" class="form-control" id="sub_categories" (change)="onSubCategoryChange($event)">
+                <option *ngFor="let sub of sub_categories"  class="submenu-option" value="{{sub.id}}">{{sub.name}}</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-danger delete-sub" (click)="onDeleteSubCategory()">Delete</button>
+        </div>
+        
+        
+      </div>
+      <div class="row" style="margin-left: 3%;">
+        <div class="col-md-10" >
+            <input type="text" class="form-control" id="sub" name="sub" placeholder="Enter the new Sub Category name of the selected category"  [(ngModel)]="newSubCategoryName" >
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success" [disabled]="!newSubCategoryName" (click)="onAddSubCategory()">Add SubCategory</button>
+        </div>
+      </div>
+    </div>
+  </body>

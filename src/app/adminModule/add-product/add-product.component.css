@@ -1,0 +1,21 @@
+.itemImg{
+  
+    max-width: 300px;
+    max-height: 220px;
+}
+.imgCont{
+    height: 10%;
+}
+.btn-primary,button:disabled{
+    background-color: var(--petrol-color);
+}
+.btn-danger{
+    margin-left: 1vw;;
+    background-color: #f26e49;
+}
+.alert{
+    margin-left: 1vw;;
+    background-color: #f26e49;
+    color: whitesmoke;
+    font-size: 1.4em;
+}

@@ -11,12 +11,13 @@
 		<h3>Your don't have any orders</h3>
 		<p>Add some items to your cart and make an order :)</p>
 	  </div>
-  <div class="container" style="margin-bottom: 12%;" *ngIf="orders.length!=0">
+  <div class="container" style="margin-bottom: 17%;" *ngIf="orders.length!=0">
     <h1>Orders List</h1>
     <table class="table">
       <thead>
         <tr>
           <th>Created Date</th>
+          <th *ngIf="isAdmin">Full name</th>
           <th>Num of Items</th>
           <th>Total</th>
           <th></th>
@@ -26,6 +27,7 @@
         <ng-container *ngFor="let order of orders ; let i=index">
             <tr>
               <td>{{order.created_date | date:'dd-MM-yyyy , hh:mm'}}</td>
+              <td *ngIf="isAdmin">{{order.user.fullname}}</td>
               <td>{{order.num_of_items}}</td>
               <td>{{order.total}} $</td>
               <td><a style="margin-left: 30%; color: whitesmoke;" class="btn btn-primary" (click)="onChangeOrderIndex(i)">
@@ -33,7 +35,7 @@
               </a></td>
             </tr>
             <tr *ngIf="orderIndex==i">
-              <td colspan="4">
+              <td [attr.colspan]="isAdmin ? 5 : 4">
                 <div class="order-details">
                     <app-order-details [order_id]="order.id"></app-order-details>
                 </div>

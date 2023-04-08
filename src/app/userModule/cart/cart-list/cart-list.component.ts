@@ -8,46 +8,75 @@ import { Order } from '../../models/order';
 import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
 
-
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
-  styleUrls: ['./cart-list.component.css']
+  styleUrls: ['./cart-list.component.css'],
 })
-export class CartListComponent implements OnInit,OnDestroy{
-cart:Cart=new Cart();
-subscription:Subscription;
-constructor(private cartService:CartService,private orderService:OrderService,
-  private authenticateStorage:AuthenticationStorageService,private router:Router,
-  private helperFunctions:HelperFunctions){}
 
-async ngOnInit() {
- this.subscription=this.cartService.cartChanged.subscribe(res=>{
-  this.cart=res;
- });
- await this.cartService.fetchAllCartData(this.authenticateStorage.getUserId());
-}
+/**
+ * The main purpose of this component is to :-
+      - Show my cart items if existed .
+      - Remove any item from the cart .
+      - Make an order .
+ * 
+ */
+export class CartListComponent implements OnInit, OnDestroy {
+  cart: Cart = new Cart();
+  subscription: Subscription;
+  showAlert: boolean = false;
 
-onConfirm(){
- let order=new Order();
- order.num_of_items=this.cart.num_of_items;
- order.total=this.cart.total;
- order.user=this.cart.user;
- order.created_date=new Date();
- this.orderService.saveOrder(order);
- this.helperFunctions.reloadPage(this.router.url);
-}
+  constructor(
+    private cartService: CartService,
+    private orderService: OrderService,
+    private authenticateStorage: AuthenticationStorageService,
+    private router: Router,
+    private helperFunctions: HelperFunctions
+  ) {}
 
-onRemove(prod_id:number){
-  let user_id=this.authenticateStorage.getUserId();
-  this.cartService.removeItemFromCart(user_id,this.cart.id,prod_id);
-  this.helperFunctions.reloadPage(this.router.url);
-}
-onClear(){
-  this.cartService.clearCart();
-  this.helperFunctions.reloadPage(this.router.url);
-}
-ngOnDestroy(): void {
-  this.subscription.unsubscribe();
-}
+  // Get all the user cart item  
+  async ngOnInit() {
+    this.subscription = this.cartService.cartChanged.subscribe((res) => {
+      this.cart = res;
+    });
+    await this.cartService.fetchAllCartData(this.authenticateStorage.getUserIdFromToken());
+  }
+
+  //make an order and save it to database then display confirmation Message
+  async onConfirm() {
+    let order = new Order();
+    order.num_of_items = this.cart.num_of_items;
+    order.total = this.cart.total;
+    order.user = this.cart.user;
+    order.created_date = new Date();
+    await this.orderService.saveOrder(order);
+    this.showMessage();
+  }
+
+  // Remove an item from the cart then refresh the cart
+  async onRemove(prod_id: number) {
+    let user_id = this.authenticateStorage.getUserIdFromToken();
+    await this.cartService.removeItemFromCart(user_id, this.cart.id, prod_id);
+    this.helperFunctions.reloadPage(this.router.url);
+  }
+
+  //Display an alert for 2.5 seconds
+  showMessage() {
+    this.showAlert = true;
+    setTimeout(() => {
+      this.showAlert = false;
+      this.helperFunctions.reloadPage(this.router.url);
+    }, 2500);
+  }
+
+  //clear all the cart then refresh the page
+  onClear() {
+    this.cartService.clearCart();
+    this.helperFunctions.reloadPage(this.router.url);
+  }
+
+  //UnSubscripe the subscriptions to prevent any memory leaks 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

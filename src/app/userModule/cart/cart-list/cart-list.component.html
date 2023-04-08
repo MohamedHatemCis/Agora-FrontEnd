@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+	<div *ngIf="showAlert" class="alert">
+		Order Confirmed with {{cart.total}} $
+ </div>
 	<div class="container text-center" style="margin-top: 50px; margin-bottom: 20%;" *ngIf="cart.items.length==0">
 		<h3>Your cart is empty</h3>
 		<p>Add some items to your cart to continue shopping</p>
