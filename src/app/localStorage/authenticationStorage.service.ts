@@ -62,6 +62,9 @@ export class AuthenticationStorageService {
   clearStorage() {
     localStorage.removeItem(this.key);
     localStorage.removeItem('isLogged');
+    localStorage.removeItem("cateIndex");
+    localStorage.removeItem("subIndex");
+
     this.isLoggedSubject.next(0);
   }
 }

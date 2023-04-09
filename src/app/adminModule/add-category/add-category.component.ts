@@ -81,6 +81,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
     if (this.newCategoryName) {
       let category = new Category();
       category.name = this.newCategoryName;
+      category.available=true;
       this.categoryService.saveCategory(category);
       this.helperFunctions.reloadPage(this.router.url);
     }
@@ -92,6 +93,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
       let subCategory = new Sub_Category();
       subCategory.category = this.getCategory(this.selectedCategoryId);
       subCategory.name = this.newSubCategoryName;
+      subCategory.available=true;
       this.subCategoryService.saveSubCategory(subCategory);
       this.helperFunctions.reloadPage(this.router.url);
     }

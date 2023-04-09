@@ -113,17 +113,18 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
     // fill form fields with the edited product
     if (this.editMode) {
-      let product = await this.productService.getProductById(this.productId);
-      this.selectedCategoryId = product.subCategory.category.id;
-      this.selectedSubCategoryId = product.subCategory.id;
-      this.productForm.patchValue({
-        name: product.name,
-        img: product.img,
-        price: product.price,
-        quantity: product.quantity,
-        description: product.description,
-        cate: this.selectedCategoryId,
-        sub: this.selectedSubCategoryId,
+      await this.productService.getProductById(this.productId).then(product => {
+        this.selectedCategoryId = product.subCategory.category.id;
+        this.selectedSubCategoryId = product.subCategory.id;
+        this.productForm.patchValue({
+          name: product.name,
+          img: product.img,
+          price: product.price,
+          quantity: product.quantity,
+          description: product.description,
+          cate: this.selectedCategoryId,
+          sub: this.selectedSubCategoryId,
+        });
       });
     }
   }
